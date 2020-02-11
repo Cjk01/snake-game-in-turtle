@@ -22,11 +22,6 @@ for side in range(4):
     border.forward(570)
     border.left(90)
 border.hideturtle()
-    
-
-#length counter for the size of the snake
-lengthCount = 4
-
 
 #Creating the snake squares + an array to store the seperate turtles inside
 snakeArr = []
@@ -34,22 +29,27 @@ snakeArr = []
 
 #wee is the snake head
 wee = turtle.Turtle()
-snakeArr.append(wee)
-wee.color('green')
-wee.shape('square')
-wee.penup()
 wee.setposition(0,0)
-wee.forward(20)
+wee.shape('square')
+wee.color('green')
+wee.penup()
+wee.speed(10)
+snakeArr.append(wee)
+
+
 
 
 #defining body square to be repeated
 body1 = turtle.Turtle()
-snakeArr.append(body1)
+body1.setposition(0,0)
 body1.color('blue')
 body1.shape('square')
 body1.penup()
-body1.setposition(0,0)
-body1.forward(0)
+snakeArr.append(body1)   
+
+#length counter for the size of the snake
+lengthCount = 2
+
 
 
 
@@ -58,9 +58,20 @@ def lengthUpdater():
     if len(snakeArr) < lengthCount:
         bodytemp = turtle.Turtle()
         snakeArr.append(bodytemp)
+#game loop 
+running = True
+while running:
+    wee.forward(0.15)
+    window.delay(16.33)
+    window.update()
+    
+    
+
+        
+    
 
 
-lengthUpdater()
+
 
 
 
