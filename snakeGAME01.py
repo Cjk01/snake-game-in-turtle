@@ -80,12 +80,30 @@ def lengthUpdater():
     if len(snakeArr) < lengthCount:
         bodytemp = turtle.Turtle()
         snakeArr.append(bodytemp)
+
+#If snake head position is touching the border, return 1
+def borderTouched():
+    iBORDER_POS = 273
+    iBORDER_NEG = -273
+    xPosHead = int(wee.xcor())
+    yPosHead = int(wee.ycor())
+    if xPosHead >= iBORDER_POS or xPosHead <= iBORDER_NEG:        #Left or right out of bounds
+        return 1
+    if yPosHead >= iBORDER_POS or yPosHead <= iBORDER_NEG:        #Top or bottom out of bounds
+        return 1
+
+
 #game loop 
 running = True
 while running:
     wee.forward(0.15)
     window.delay(16.33)
     window.update()
+    #gameover sequence
+    out = borderTouched()
+    if out == 1:
+        turtle.done()
+        break
     
     
 
