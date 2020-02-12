@@ -50,6 +50,28 @@ snakeArr.append(body1)
 #length counter for the size of the snake
 lengthCount = 2
 
+#defining movement functions 
+def moveUp():
+    wee.seth(90)
+    
+def moveLeft():
+    wee.seth(180)
+    
+def moveDown():
+    wee.seth(270)
+    
+def moveRight():
+    wee.seth(0)
+
+
+
+
+#calling movement functions with user input
+turtle.listen()
+turtle.onkeypress(moveUp, "Up")
+turtle.onkeypress(moveLeft, "Left")
+turtle.onkeypress(moveDown, "Down")
+turtle.onkeypress(moveRight, "Right")
 
 
 
