@@ -48,7 +48,7 @@ body1.penup()
 snakeArr.append(body1)   
 
 #length counter for the size of the snake
-lengthCount = 2
+lengthCount = 4
 
 #defining movement functions 
 def moveUp():
@@ -93,11 +93,38 @@ def borderTouched():
         return 1
 
 
+
+        
+
+
+#position logging array to be updated by positionLogger function
+positionLog = []
+
+#position logger function to map the x and y cor of each element of snakeArr into a sub array, which is then appended to the positionLog array
+def positionLogger():
+    for i in range(len(snakeArr)):
+        subArr = []
+        subArr.append(snakeArr[i].xcor())
+        subArr.append(snakeArr[i].ycor())
+        positionLog.append(subArr)
+
+
+
+
+
+    
+    
+        
+        
+        
+
+
 #game loop 
 running = True
 while running:
     wee.forward(0.15)
     window.delay(16.33)
+    positionLogger()
     window.update()
     #gameover sequence
     out = borderTouched()
