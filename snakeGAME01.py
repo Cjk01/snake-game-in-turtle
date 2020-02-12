@@ -108,7 +108,12 @@ def positionLogger():
         subArr.append(snakeArr[i].ycor())
         positionLog.append(subArr)
 
+#position checker function from positionLog array
 
+def positionChecker():
+    for i in range(len(positionLog)):
+        if positionLog[i][0] == positionLog[i + 1][0] or positionLog[i][1] == positionLog[i + 1][1]:
+            out = 1
 
 
 
@@ -124,7 +129,9 @@ running = True
 while running:
     wee.forward(0.15)
     window.delay(16.33)
+    lengthUpdater()
     positionLogger()
+    positionChecker()
     window.update()
     #gameover sequence
     out = borderTouched()
