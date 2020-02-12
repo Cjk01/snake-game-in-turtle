@@ -41,14 +41,14 @@ snakeArr.append(wee)
 
 #defining body square to be repeated
 body1 = turtle.Turtle()
-body1.setposition(0,0)
+body1.setposition(-40,-40)
 body1.color('blue')
 body1.shape('square')
 body1.penup()
 snakeArr.append(body1)   
 
 #length counter for the size of the snake
-lengthCount = 4
+lengthCount = 3
 
 #defining movement functions 
 def moveUp():
@@ -78,8 +78,8 @@ turtle.onkeypress(moveRight, "Right")
 #function to update the length of the snakeArr when lengthCount > arr.len
 def lengthUpdater():
     if len(snakeArr) < lengthCount:
-        bodytemp = turtle.Turtle()
-        snakeArr.append(bodytemp)
+        body1 = turtle.Turtle()
+        snakeArr.append(body1)
 
 #If snake head position is touching the border, return 1
 def borderTouched():
@@ -97,23 +97,15 @@ def borderTouched():
         
 
 
-#position logging array to be updated by positionLogger function
-positionLog = []
 
-#position logger function to map the x and y cor of each element of snakeArr into a sub array, which is then appended to the positionLog array
-def positionLogger():
-    for i in range(len(snakeArr)):
-        subArr = []
-        subArr.append(snakeArr[i].xcor())
-        subArr.append(snakeArr[i].ycor())
-        positionLog.append(subArr)
 
 #position checker function from positionLog array
 
-def positionChecker():
-    for i in range(len(positionLog)):
-        if positionLog[i][0] == positionLog[i + 1][0] or positionLog[i][1] == positionLog[i + 1][1]:
-            out = 1
+def collisionDetector():
+    for j in range(len(snakeArr) - 1):
+        if snakeArr[j].distance(wee) < 20:
+            turtle.done()
+            
 
 
 
@@ -130,8 +122,7 @@ while running:
     wee.forward(0.15)
     window.delay(16.33)
     lengthUpdater()
-    positionLogger()
-    positionChecker()
+    collisionDetector()
     window.update()
     #gameover sequence
     out = borderTouched()
