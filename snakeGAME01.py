@@ -49,7 +49,7 @@ body1.penup()
 #snakeArr.append(body1)     TEMP MUTE
 
 #length counter for the size of the snake
-lengthCount = 3
+lengthCount = 20        #was 3
 
 #defining movement functions 
 def moveUp():
@@ -113,11 +113,17 @@ def collisionDetector():
     
 def headTracker():
     snakeArr.append(wee.pos())
-        
+
+
+#Array used to log the direction
+snakePoint = []
+snakePoint.append(wee.heading())
 def makeTail():
-    if wee.distance(body1) > lengthCount:
+    #trailPos = ((wee.xcor()),(wee.ycor()))
+    if wee.distance(body1) > lengthCount or wee.heading() != snakePoint[-1]:
         body1.goto(wee.pos())
         body1.stamp()
+        snakePoint.append(wee.heading())
 
         
 
