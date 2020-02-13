@@ -39,13 +39,14 @@ snakeArr.append(wee)
 
 
 
+
 #defining body square to be repeated
 body1 = turtle.Turtle()
 body1.setposition(-40,-40)
 body1.color('blue')
 body1.shape('square')
 body1.penup()
-snakeArr.append(body1)   
+#snakeArr.append(body1)     TEMP MUTE
 
 #length counter for the size of the snake
 lengthCount = 3
@@ -85,8 +86,8 @@ def lengthUpdater():
 def borderTouched():
     iBORDER_POS = 273
     iBORDER_NEG = -273
-    xPosHead = int(wee.xcor())
-    yPosHead = int(wee.ycor())
+    xPosHead = int(wee.xcor())      #x position of snake head
+    yPosHead = int(wee.ycor())      #y position of snake head
     if xPosHead >= iBORDER_POS or xPosHead <= iBORDER_NEG:        #Left or right out of bounds
         return 1
     if yPosHead >= iBORDER_POS or yPosHead <= iBORDER_NEG:        #Top or bottom out of bounds
@@ -110,9 +111,14 @@ def collisionDetector():
 
 
     
-    
+def headTracker():
+    snakeArr.append(wee.pos())
         
-        
+def makeTail():
+    if wee.distance(body1) > lengthCount:
+        body1.goto(wee.pos())
+        body1.stamp()
+
         
 
 
@@ -121,12 +127,15 @@ running = True
 while running:
     wee.forward(0.15)
     window.delay(16.33)
-    lengthUpdater()
-    collisionDetector()
+    #lengthUpdater()        TEMP MUTE
+    headTracker()
+    makeTail()
+    #collisionDetector()    TEMP MUTE
     window.update()
     #gameover sequence
     out = borderTouched()
     if out == 1:
+        print(snakeArr)
         turtle.done()
         break
     
