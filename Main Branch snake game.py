@@ -147,8 +147,11 @@ def lengthUpdater():
 #iterates through the snakeArray and tracks the snake head for each block
 def headFollow():
     if bodyLength > 1:
-        for i in range(len(snakeArray)):
-            snakeArray[i]
+        for i in range(1, bodyLength):
+            snakeArray[i].goto(snakeArray[i - 1].xcor(), snakeArray[i - 1].ycor())
+        snakeArray[0].goto(head.xcor(), head.ycor())
+        
+            
     elif bodyLength != 0:
         snakeArray[0].goto(head.xcor(), head.ycor())
     
