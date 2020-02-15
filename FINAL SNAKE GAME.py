@@ -140,8 +140,15 @@ def lengthUpdater():
 #detect collision with snake head and apple and generates a new apple
 def appleTouched():
     if head.distance(apple) < 20:
-        apple.goto(random.randrange(-270, 270, 20),random.randrange(-270, 270, 20))
-        lengthUpdater()
+        applex = random.randrange(-270, 270, 20)
+        appley = random.randrange(-270, 270, 20)
+        if head.distance(applex, appley) < 30:
+            for i in range(len(snakeArray)):
+                if snakeArray[i].distance(applex, appley) < 30:
+                    appleTouched()
+        else:                                                                               
+            apple.goto(random.randrange(-270, 270, 20),random.randrange(-270, 270, 20))
+            lengthUpdater()
 
 
 
