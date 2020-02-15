@@ -97,12 +97,23 @@ turtle.onkeypress(moveDown, "Down")
 turtle.onkeypress(moveRight, "Right")
 
 
-#generating an apple on screen
+#apple object to be randomly generated later on
 apple = turtle.Turtle()
+apple.hideturtle()
 apple.shape('circle')
 apple.penup()
 apple.color('red')
-apple.setposition(-40,-50)
+apple.speed(0)
+apple.goto(-90,-100)
+apple.showturtle()
+
+#detect collision with snake head and apple
+def appleTouched():
+    if head.distance(apple) < 20:
+        apple.goto(random.randrange(-270, 270, 20),random.randrange(-270, 270, 20))
+
+        
+
 
 
 
@@ -112,6 +123,7 @@ while running:
     window.delay(60)
     borderTouched()
     movement()
+    appleTouched()
     window.update()
 
 
