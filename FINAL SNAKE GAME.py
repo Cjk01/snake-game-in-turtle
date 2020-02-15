@@ -159,7 +159,11 @@ def headFollow():
         snakeArray[0].goto(head.xcor(), head.ycor())
     
 
-
+#self collision checker
+def selfCollision():
+    for j in range(len(snakeArray)):
+        if head.distance(snakeArray[j]) < 20:
+            turtle.done()
         
 
 
@@ -172,6 +176,7 @@ while running:
     appleTouched()
     headFollow()
     movement()
+    selfCollision()
     window.update()
     time.sleep(0.1)
     
