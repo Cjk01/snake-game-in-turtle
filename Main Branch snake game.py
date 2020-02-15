@@ -3,12 +3,14 @@
 import turtle
 import math
 import random
+import time
 
 #creating the play area
 
 window = turtle.Screen()
 window.bgcolor('black')
 window.setup(600,600)
+window.tracer(0, 0)
 
 
 
@@ -25,6 +27,9 @@ for side in range(4):
     border.forward(570)
     border.left(90)
 border.hideturtle()
+
+
+
 
 #creating the head of the snake
 
@@ -60,20 +65,24 @@ def borderTouched():
 iMOVEMENT_AMOUNT = 20
 
 def moveUp():
-    head.seth(90)
+    if head.heading() != 270:
+        head.seth(90)
       
 
 def moveLeft():
-    head.seth(180)
+    if head.heading() != 0:
+        head.seth(180)
    
     
       
 def moveDown():
-    head.seth(270)
+    if head.heading() != 90:
+        head.seth(270)
     
    
 def moveRight():
-    head.seth(0)
+    if head.heading() != 180:
+        head.seth(0)
    
   
 
@@ -97,6 +106,14 @@ turtle.onkeypress(moveDown, "Down")
 turtle.onkeypress(moveRight, "Right")
 
 
+
+#body array that will have turtles appended to it
+bodyLength = 0
+snakeArray = []
+
+
+
+
 #apple object to be randomly generated later on
 apple = turtle.Turtle()
 apple.hideturtle()
@@ -107,10 +124,35 @@ apple.speed(0)
 apple.goto(-90,-100)
 apple.showturtle()
 
-#detect collision with snake head and apple
+#detect collision with snake head and apple and generates a new apple
 def appleTouched():
     if head.distance(apple) < 20:
+        global bodyLength
+        bodyLength += 1
         apple.goto(random.randrange(-270, 270, 20),random.randrange(-270, 270, 20))
+
+
+#updates the length of the snake body, and appends it to the snakeArray
+def lengthUpdater():
+    if len(snakeArray) < bodyLength:
+        templateTurtle = turtle.Turtle()
+        templateTurtle.setposition(-400,-200)
+        templateTurtle.shape('square')
+        templateTurtle.color('green')
+        templateTurtle.speed(0)
+        templateTurtle.penup()
+        snakeArray.append(templateTurtle)
+
+        
+#iterates through the snakeArray and tracks the snake head for each block
+def headFollow():
+    if bodyLength > 1:
+        for i in range(len(snakeArray)):
+            snakeArray[i]
+    elif bodyLength != 0:
+        snakeArray[0].goto(head.xcor(), head.ycor())
+    
+
 
         
 
@@ -120,11 +162,16 @@ def appleTouched():
 
 running = True
 while running:
-    window.delay(60)
     borderTouched()
-    movement()
     appleTouched()
+    lengthUpdater()
+    headFollow()
+    movement()
     window.update()
+    time.sleep(0.1)
+    
+ 
+   
 
 
     
