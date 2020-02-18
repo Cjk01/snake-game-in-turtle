@@ -142,7 +142,7 @@ def appleTouched():
     if head.distance(apple) < 20:
         applex = random.randrange(-200, 200, 20)
         appley = random.randrange(-200, 200, 20)
-        for i in range(len(snakeArray)):
+        for i in range(len(snakeArray) - 1):
             if head.distance(applex, appley) < 60 or snakeArray[i].distance(applex, appley) < 60:
                 appleTouched()
             
