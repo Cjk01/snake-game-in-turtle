@@ -18,13 +18,13 @@ window.tracer(0, 0)
 
 border = turtle.Turtle()
 border.penup()
-border.setposition(-200,-200)
+border.setposition(-215,-215)
 border.pendown()
 border.speed(0)
 border.pencolor('white')
-border.pensize(1)
+border.pensize(5)
 for side in range(4):
-    border.forward(400)
+    border.forward(430)
     border.left(90)
 border.hideturtle()
 
@@ -44,8 +44,8 @@ head.penup()
 
 #If snake head position is touching the border, end the game
 def borderTouched():
-    iBORDER_POS = 200
-    iBORDER_NEG = -200
+    iBORDER_POS = 210
+    iBORDER_NEG = -210
     xPosHead = int(head.xcor())
     yPosHead = int(head.ycor())
     if xPosHead >= iBORDER_POS or xPosHead <= iBORDER_NEG:        #Left or right out of bounds
